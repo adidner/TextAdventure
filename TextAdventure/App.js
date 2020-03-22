@@ -1,19 +1,48 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import {Icon} from 'react-native-elements';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+
+import MainMenu from "./src/MainMenu"
+import Settings from "./src/Settings"
+import Reading from "./src/Reading"
+
+
+export default class App extends React.Component {
+    render() {
+
+
+
+
+      const AppNavigator = createStackNavigator(
+        {
+        MainMenu: {screen: MainMenu},
+        Settings: {screen: Settings},
+        Reading: {screen: Reading}
+      },
+      {
+        defaultNavigationOptions: ({navigation}) => {
+          return{
+        		headerRight: () =>(
+        			<View>
+        					<Icon iconStyle={{fontSize: 25, margin: 10}} type='AntDesign'
+        					name='settings' onPress={() => navigation.navigate('Settings') }> </Icon>
+
+        			</View>
+        		)
+          };
+        },
+        initialRouteName: 'MainMenu',
+
+      }
+      );
+
+      const Navigation = createAppContainer(AppNavigator);
+
+        return (
+            <Navigation/>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
