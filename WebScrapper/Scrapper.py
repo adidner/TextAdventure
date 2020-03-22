@@ -3,9 +3,6 @@ import urllib.request as ur
 import json
 
 #the initial room of my current story is the following URL/ID combination
-
-
-
 overarchingProject = {
     "baseURL": "https://infinite-story.com",
     "StoryName": "InnKeeper",
