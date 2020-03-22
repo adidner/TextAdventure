@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, AsyncStorage, TextInput} from 'react-native';
-import GlobalText from "./GlobalText"
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
 
-export default function Settings(){
-
+export default function GlobalText(props){
 
   const [globalFontSize, setGlobalFontSize] = useState(30);
+
   storageKey = "fontSize";
 
   getData = async () => {
@@ -21,10 +20,10 @@ export default function Settings(){
   }
 
 
+
   return(
     <View>
-      <GlobalText> Settings </GlobalText>
-      <TextInput></TextInput>
+      <Text style={{ fontSize: globalFontSize }}> {props.children} </Text>
     </View>
   );
 }

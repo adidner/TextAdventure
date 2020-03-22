@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import GlobalText from "./GlobalText"
 
 export default function Reading(){
   return(
     <View>
-      <Text> Reading </Text>
+      <GlobalText> Reading </GlobalText>
     </View>
   );
 }
