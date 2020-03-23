@@ -1,28 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
+import {getFontSize} from './redux/selectors';
+import { useSelector } from 'react-redux';
 
 export default function GlobalText(props){
 
-  const [globalFontSize, setGlobalFontSize] = useState(30);
-
-  storageKey = "fontSize";
-
-  getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem(storageKey)
-      if(value !== null) {
-        setGlobalFontSize(parseInt(value))
-      }
-    } catch(e) {
-      // error reading value
-    }
-  }
+  let globalFontSize = useSelector(getFontSize);
 
 
 
   return(
-    <View>
+    <View  style={props.style} >
       <Text style={{ fontSize: globalFontSize }}> {props.children} </Text>
     </View>
   );

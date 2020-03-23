@@ -5,6 +5,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import {Icon} from 'react-native-elements';
 
 
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
+
 import MainMenu from "./src/MainMenu"
 import Settings from "./src/Settings"
 import Reading from "./src/Reading"
@@ -42,7 +45,9 @@ export default class App extends React.Component {
       const Navigation = createAppContainer(AppNavigator);
 
         return (
-            <Navigation/>
+          <Provider store={store}>
+              <Navigation/>
+          </Provider>
         );
     }
 }
