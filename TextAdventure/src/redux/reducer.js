@@ -46,7 +46,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentRoom: action.newRoom,
-        currentChoices: StoryKey.RoomKey[action.newroom].choiceURLs,
+        currentChoices: StoryKey.RoomKey[action.newroom].choices,
         currentBody: StoryKey.RoomKey[action.newroom].body,
       }
     case RESET_ROOM:
@@ -74,5 +74,5 @@ function getInitialBody(StoryKey){
 
 function getInitialChoices(StoryKey){
   initialRoom = getInitialRoom(StoryKey);
-  return StoryKey.RoomKey[initialRoom].choiceURLs;
+  return StoryKey.RoomKey[initialRoom].choices;
 }

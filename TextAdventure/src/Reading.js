@@ -20,11 +20,11 @@ export default function Reading(){
   let listChoiceElements;
   if(currentChoices.length > 0){
     listChoiceElements = currentChoices.map((item) =>
-      <ChoiceElement newref={scrollViewRef} title={item} />
+      <ChoiceElement newref={scrollViewRef} choiceText={item.choiceText} choiceURL={item.choiceURL} />
     );
   }
   else{
-      listChoiceElements = <TouchableOpacity onPress={() => dispatch(resetRoom())}><GlobalText> Play Again? </GlobalText></TouchableOpacity>
+      listChoiceElements = <TouchableOpacity style={styles.buttonGray} onPress={() => {dispatch(resetRoom());scrollViewRef.current.scrollTo({x:0,y:0,animated:false});}}><GlobalText> Play Again? </GlobalText></TouchableOpacity>
   }
 
 
@@ -53,12 +53,13 @@ function ChoiceElement(props){
   return(
     <TouchableOpacity
       onPress={() => {
-        dispatch(updateRoom(props.title));
+        dispatch(updateRoom(props.choiceURL));
         props.newref.current.scrollTo({x:0,y:0,animated:false});
       }}
+      style={styles.buttonGray}
     >
       <GlobalText>
-        {props.title}
+        {props.choiceText}
       </GlobalText>
     </TouchableOpacity>
   );
@@ -72,5 +73,10 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginHorizontal: 4,
+  },
+  buttonGray:{
+    margin: 10,
+    padding: 10,
+    backgroundColor: 'gray'
   },
 });
