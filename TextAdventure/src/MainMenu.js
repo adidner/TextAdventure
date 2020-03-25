@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 import GlobalText from "./GlobalText";
 import Reading from "./Reading";
+import StoryKey from "./data/StoryKey";
 
 export default function MainMenu(props){
   return(
@@ -9,7 +10,7 @@ export default function MainMenu(props){
       <Text> </Text>
 
       <View style={{alignItems: 'center'}}>
-        <Text style={{fontSize: 40}}>The Necromancer</Text>
+        <Text style={{fontSize: 40}}>{StoryKey.StoryName}</Text>
 
         <View style={{flexDirection: "row", alignItems:'center'}}>
           <Image
