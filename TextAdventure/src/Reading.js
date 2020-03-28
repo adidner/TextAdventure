@@ -21,7 +21,7 @@ export default function Reading(){
   let listChoiceElements;
   if(currentChoices.length > 0){
     listChoiceElements = currentChoices.map((item) =>
-      <ChoiceElement newref={scrollViewRef} currentRoom={currentRoom} choiceText={item.choiceText} choiceURL={item.choiceURL} />
+      <ChoiceElement key={item.choiceURL} newref={scrollViewRef} currentRoom={currentRoom} choiceText={item.choiceText} choiceURL={item.choiceURL} />
     );
   }
   else{
@@ -41,17 +41,17 @@ export default function Reading(){
     <SafeAreaView style={styles.container}>
       <ScrollView ref={scrollViewRef} style={styles.scrollView}>
 
-        <GlobalText> {currentBody} </GlobalText>
+        <GlobalText>{currentBody}</GlobalText>
 
         <View>
           {listChoiceElements}
         </View>
         {
         showBackChoiceButton &&
-        <TouchableOpacity onPress={() => {goBack()}}>
-          <Text>
+        <TouchableOpacity style={styles.buttonGray} onPress={() => {goBack()}}>
+          <GlobalText>
             Go Back a Choice
-          </Text>
+          </GlobalText>
         </TouchableOpacity>
         }
 

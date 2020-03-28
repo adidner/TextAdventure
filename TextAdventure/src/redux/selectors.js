@@ -13,7 +13,6 @@ export function getCurrentChoices(state){
 }
 
 export function getCurrentBody(state){
-  console.log(state);
   return state.currentBody;
 }
 
