@@ -47,6 +47,7 @@ while len(queue) > 0:
 
 
     body = soup.find('div', attrs={'class': 'description'}).get_text()
+    body = body.replace("\u0085"," ")
     choices = soup.find('div', attrs={'class': 'room-choices mt-4'})
 
     endtag = soup.find('div', attrs={'class': 'room-footer text-center text-md-left'})
@@ -56,6 +57,7 @@ while len(queue) > 0:
         for link in choices.find_all('a'):
             choiceURL = link.get('href')
             choiceText = link.get_text()
+            choiceText = choiceText.replace("\u0085"," ")
             links.append({"choiceURL": choiceURL, "choiceText": choiceText})
             if choiceURL not in RoomKey.keys():
                 queue.append(choiceURL)
