@@ -62,7 +62,7 @@ export default function rootReducer(state = initialState, action) {
         backstack: []
       }
     case PUSH_BACKSTACK:
-      let newstackPush = state.backstack;
+      let newstackPush = Array.from(state.backstack);
       newstackPush.push(action.payload);
       return{
         ...state,
@@ -72,7 +72,7 @@ export default function rootReducer(state = initialState, action) {
       if (state.backstack.length == 0 ){
         return state;
       }
-      let newstackPop = state.backstack;
+      let newstackPop = Array.from(state.backstack);
       let newcurrentRoom = state.currentRoom;
       newcurrentRoom = newstackPop.pop();
       return{

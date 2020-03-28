@@ -6,11 +6,14 @@ import {Icon} from 'react-native-elements';
 
 
 import { Provider } from 'react-redux';
-import store from './src/redux/store';
+import configureStore from './src/redux/store';
+const {store, persistor} = configureStore();
 
-import MainMenu from "./src/MainMenu"
-import Settings from "./src/Settings"
-import Reading from "./src/Reading"
+import MainMenu from "./src/MainMenu";
+import Settings from "./src/Settings";
+import Reading from "./src/Reading";
+
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 export default class App extends React.Component {
@@ -46,7 +49,9 @@ export default class App extends React.Component {
 
         return (
           <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
               <Navigation/>
+            </PersistGate>
           </Provider>
         );
     }
