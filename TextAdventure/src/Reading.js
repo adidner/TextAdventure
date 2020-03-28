@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, TouchableOp
 import GlobalText from "./GlobalText";
 import StoryKey from "./data/StoryKey";
 import Constants from 'expo-constants';
-import {getCurrentRoom, getCurrentChoices, getCurrentBody} from './redux/selectors';
-import {updateRoom, resetRoom} from './redux/actions'
+import {getCurrentRoom, getCurrentChoices, getCurrentBody, getShowBackChoiceButton} from './redux/selectors';
+import {updateRoom, resetRoom, popBackstack, pushBackstack} from './redux/actions'
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Reading(){
@@ -12,6 +12,7 @@ export default function Reading(){
   let currentRoom = useSelector(getCurrentRoom);
   let currentChoices = useSelector(getCurrentChoices);
   let currentBody = useSelector(getCurrentBody);
+  let showBackChoiceButton = useSelector(getShowBackChoiceButton)
 
   const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ export default function Reading(){
   let listChoiceElements;
   if(currentChoices.length > 0){
     listChoiceElements = currentChoices.map((item) =>
-      <ChoiceElement newref={scrollViewRef} choiceText={item.choiceText} choiceURL={item.choiceURL} />
+      <ChoiceElement newref={scrollViewRef} currentRoom={currentRoom} choiceText={item.choiceText} choiceURL={item.choiceURL} />
     );
   }
   else{
@@ -28,6 +29,12 @@ export default function Reading(){
   }
 
 
+  function goBack(){
+    dispatch(popBackstack());
+    setTimeout(() => {
+      scrollViewRef.current.scrollToEnd({animated:false});
+    }, 50);
+  }
 
 
   return(
@@ -39,7 +46,14 @@ export default function Reading(){
         <View>
           {listChoiceElements}
         </View>
-
+        {
+        showBackChoiceButton &&
+        <TouchableOpacity onPress={() => {goBack()}}>
+          <Text>
+            Go Back a Choice
+          </Text>
+        </TouchableOpacity>
+        }
 
       </ScrollView>
     </SafeAreaView>
@@ -53,6 +67,7 @@ function ChoiceElement(props){
   return(
     <TouchableOpacity
       onPress={() => {
+        dispatch(pushBackstack(props.currentRoom));
         dispatch(updateRoom(props.choiceURL));
         props.newref.current.scrollTo({x:0,y:0,animated:false});
       }}

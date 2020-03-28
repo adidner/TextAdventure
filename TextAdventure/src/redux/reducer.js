@@ -3,7 +3,9 @@ import {
   DECREMENT_FONT_SIZE,
   SET_FONT_SIZE,
   UPDATE_ROOM,
-  RESET_ROOM
+  RESET_ROOM,
+  POP_BACKSTACK,
+  PUSH_BACKSTACK,
 } from './actions'
 
 import StoryKey from "../data/StoryKey";
@@ -12,7 +14,8 @@ const initialState = {
   fontSize: 18,
   currentRoom: getInitialRoom(StoryKey),
   currentChoices: getInitialChoices(StoryKey),
-  currentBody: getInitialBody(StoryKey)
+  currentBody: getInitialBody(StoryKey),
+  backstack: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -45,7 +48,7 @@ export default function rootReducer(state = initialState, action) {
     case UPDATE_ROOM:
       return {
         ...state,
-        currentRoom: action.newRoom,
+        currentRoom: action.newroom,
         currentChoices: StoryKey.RoomKey[action.newroom].choices,
         currentBody: StoryKey.RoomKey[action.newroom].body,
       }
@@ -55,9 +58,30 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         currentRoom: getInitialRoom(StoryKey),
         currentChoices: getInitialChoices(StoryKey),
-        currentBody: getInitialBody(StoryKey)
+        currentBody: getInitialBody(StoryKey),
+        backstack: []
       }
-
+    case PUSH_BACKSTACK:
+      let newstackPush = state.backstack;
+      newstackPush.push(action.payload);
+      return{
+        ...state,
+        backstack: newstackPush
+      }
+    case POP_BACKSTACK:
+      if (state.backstack.length == 0 ){
+        return state;
+      }
+      let newstackPop = state.backstack;
+      let newcurrentRoom = state.currentRoom;
+      newcurrentRoom = newstackPop.pop();
+      return{
+        ...state,
+        currentRoom: newcurrentRoom,
+        currentChoices: StoryKey.RoomKey[newcurrentRoom].choices,
+        currentBody: StoryKey.RoomKey[newcurrentRoom].body,
+        backstack: newstackPop
+      }
     default:
       return state;
   }

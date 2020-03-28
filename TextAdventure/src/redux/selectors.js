@@ -13,5 +13,10 @@ export function getCurrentChoices(state){
 }
 
 export function getCurrentBody(state){
+  console.log(state);
   return state.currentBody;
+}
+
+export function getShowBackChoiceButton(state){
+  return (state.backstack.length > 0);
 }
