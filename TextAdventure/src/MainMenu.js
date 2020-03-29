@@ -3,8 +3,13 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-
 import GlobalText from "./GlobalText";
 import Reading from "./Reading";
 import StoryKey from "./data/StoryKey";
+import { useDispatch } from 'react-redux';
+import { resetRoom } from './redux/actions';
 
 export default function MainMenu(props){
+
+  const dispatch = useDispatch();
+
   return(
     <View style={{alignItems: 'center', flex:1, justifyContent: 'space-between'}}>
       <Text> </Text>
@@ -22,8 +27,8 @@ export default function MainMenu(props){
       </View>
 
       <View style={{paddingBottom: 10}}>
-        <MenuButton onPress={() => props.navigation.navigate('Reading')}>New Story</MenuButton>
-        <MenuButton>Continue Story</MenuButton>
+        <MenuButton onPress={() => {dispatch(resetRoom());props.navigation.navigate('Reading');}}>New Story</MenuButton>
+        <MenuButton onPress={() => {props.navigation.navigate('Reading')}}>Continue Story</MenuButton>
         <MenuButton>More Stories</MenuButton>
       </View>
     </View>
@@ -32,7 +37,7 @@ export default function MainMenu(props){
 
 function MenuButton(props){
   return(
-    <TouchableOpacity onPress={props.onPress} style={{backgroundColor: "azure", padding: 10, margin: 4}}>
+    <TouchableOpacity onPress={props.onPress} style={{backgroundColor: "gray", padding: 10, margin: 4}}>
       <Text style={{fontSize: 30}}>
         {props.children}
       </Text>

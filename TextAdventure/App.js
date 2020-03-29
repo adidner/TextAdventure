@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {Icon} from 'react-native-elements';
+import StoryKey from "./src/data/StoryKey";
 
 
 import { Provider } from 'react-redux';
@@ -31,6 +32,7 @@ export default class App extends React.Component {
       {
         defaultNavigationOptions: ({navigation}) => {
           return{
+            title: StoryKey.StoryName,
         		headerRight: () =>(
         			<View>
         					<Icon iconStyle={{fontSize: 25, margin: 10}} type='AntDesign'

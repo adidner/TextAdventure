@@ -33,7 +33,7 @@ export default function Settings(){
         >
           <View style={{flex: 1,justifyContent:"space-between"}}>
             <View>
-              <Text style={{alignSelf: 'flex-start', fontSize: 30, marginBottom: 10}}>Story Credits</Text>
+              <Text style={{alignSelf: 'flex-start', fontSize: 25, marginBottom: 10}}>Story Credits</Text>
               <Text style={styles.modalButton}>Written By: {StoryKey.Author}</Text>
               <Text style={styles.modalButtonGray} onPress={() => Linking.openURL(StoryKey.LinkToProfile)}>
                 Web Profile
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 13,
   },
   fontSizing: {
-    fontSize: 30
+    fontSize: 25
   },
   modalButton:{
     fontSize: 17,

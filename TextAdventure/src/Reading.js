@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   scrollView: {
-    marginHorizontal: 4,
+    marginHorizontal: 7,
   },
   buttonGray:{
     margin: 10,
