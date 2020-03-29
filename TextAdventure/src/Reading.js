@@ -6,6 +6,7 @@ import Constants from 'expo-constants';
 import {getCurrentRoom, getCurrentChoices, getCurrentBody, getShowBackChoiceButton} from './redux/selectors';
 import {updateRoom, resetRoom, popBackstack, pushBackstack} from './redux/actions'
 import { useSelector, useDispatch } from 'react-redux';
+import { scale, verticalScale } from 'react-native-size-matters';
 
 export default function Reading(){
 
@@ -84,14 +85,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
-    padding: 5
+    padding: scale(5)
   },
   scrollView: {
-    marginHorizontal: 7,
+    marginHorizontal: scale(7),
   },
   buttonGray:{
-    margin: 10,
-    padding: 10,
+    margin: scale(10),
+    padding: scale(10),
     backgroundColor: 'gray'
   },
 });

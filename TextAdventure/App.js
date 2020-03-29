@@ -16,6 +16,8 @@ import Reading from "./src/Reading";
 
 import { PersistGate } from 'redux-persist/integration/react';
 
+import { scale, verticalScale } from 'react-native-size-matters';
+
 
 export default class App extends React.Component {
     render() {
@@ -35,7 +37,7 @@ export default class App extends React.Component {
             title: StoryKey.StoryName,
         		headerRight: () =>(
         			<View>
-        					<Icon iconStyle={{fontSize: 25, margin: 10}} type='AntDesign'
+        					<Icon iconStyle={{fontSize: scale(25), margin: scale(10)}} type='AntDesign'
         					name='settings' onPress={() => navigation.navigate('Settings') }> </Icon>
 
         			</View>

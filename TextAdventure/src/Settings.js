@@ -7,6 +7,7 @@ import {getFontSize} from './redux/selectors';
 import {incrementFontSize, decrementFontSize} from './redux/actions'
 import { useSelector, useDispatch } from 'react-redux';
 import StoryKey from "./data/StoryKey";
+import { scale, verticalScale } from 'react-native-size-matters';
 
 
 export default function Settings(){
@@ -33,7 +34,7 @@ export default function Settings(){
         >
           <View style={{flex: 1,justifyContent:"space-between"}}>
             <View>
-              <Text style={{alignSelf: 'flex-start', fontSize: 25, marginBottom: 10}}>Story Credits</Text>
+              <Text style={{alignSelf: 'flex-start', fontSize: scale(25), marginBottom: scale(10)}}>Story Credits</Text>
               <Text style={styles.modalButton}>Written By: {StoryKey.Author}</Text>
               <Text style={styles.modalButtonGray} onPress={() => Linking.openURL(StoryKey.LinkToProfile)}>
                 Web Profile
@@ -80,36 +81,36 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'gray',
-    marginLeft: 8,
+    marginLeft: scale(8),
     padding: 0
   },
   scrollView: {
-    marginHorizontal: 4,
+    marginHorizontal: scale(4),
   },
   element: {
-    marginLeft: 4,
-    marginTop: 13,
+    marginLeft: scale(4),
+    marginTop: scale(13),
   },
   fontSizing: {
-    fontSize: 25
+    fontSize: scale(25)
   },
   modalButton:{
-    fontSize: 17,
-    margin: 10,
-    padding: 10,
+    fontSize: scale(17),
+    margin: scale(10),
+    padding: scale(10),
     alignSelf:'center'
   },
   modalButtonGray:{
-    fontSize: 17,
-    margin: 10,
-    padding: 10,
+    fontSize: scale(17),
+    margin: scale(10),
+    padding: scale(10),
     backgroundColor: 'gray',
     alignSelf: 'center'
   },
   modalButtonGrayRight:{
-    fontSize: 17,
-    margin: 10,
-    padding: 10,
+    fontSize: scale(17),
+    margin: scale(10),
+    padding: scale(10),
     backgroundColor: 'gray',
     alignSelf: 'flex-end'
   }
