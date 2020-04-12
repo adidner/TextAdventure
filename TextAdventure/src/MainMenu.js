@@ -27,10 +27,10 @@ export default function MainMenu(props){
         </View>
       </View>
 
-      <View style={{paddingBottom: scale(10)}}>
+      <View style={{paddingBottom: scale(15)}}>
         <MenuButton onPress={() => {dispatch(resetRoom());props.navigation.navigate('Reading');}}>New Story</MenuButton>
         <MenuButton onPress={() => {props.navigation.navigate('Reading')}}>Continue Story</MenuButton>
-        <MenuButton>More Stories</MenuButton>
+        {/*<MenuButton>More Stories</MenuButton>*/}
       </View>
     </View>
   );
@@ -38,7 +38,7 @@ export default function MainMenu(props){
 
 function MenuButton(props){
   return(
-    <TouchableOpacity onPress={props.onPress} style={{backgroundColor: "gray", padding: scale(10), margin: scale(4)}}>
+    <TouchableOpacity onPress={props.onPress} style={{backgroundColor: "gray", padding: scale(10), margin: scale(6)}}>
       <Text style={{fontSize: scale(30)}}>
         {props.children}
       </Text>
