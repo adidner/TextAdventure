@@ -1,5 +1,5 @@
 import React, {useRef,useEffect } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList, TouchableOpacity, Alert, BackHandler } from 'react-native';
 import GlobalText from "./GlobalText";
 import StoryKey from "./data/StoryKey";
 import Constants from 'expo-constants';
@@ -28,6 +28,13 @@ export default function Reading(){
   else{
       listChoiceElements = <TouchableOpacity style={styles.buttonGray} onPress={() => {dispatch(resetRoom());scrollViewRef.current.scrollTo({x:0,y:0,animated:false});}}><GlobalText> Play Again? </GlobalText></TouchableOpacity>
   }
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+        goBack()
+        return true;
+     });
+  });
 
 
   function goBack(){
