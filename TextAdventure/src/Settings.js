@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, AsyncStorage, TextInput, TouchableOpacity, SafeAreaView, ScrollView, Linking, Alert} from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, TextInput, TouchableOpacity, SafeAreaView, ScrollView, Linking, Alert, BackHandler} from 'react-native';
 import GlobalText from "./GlobalText";
 import Constants from 'expo-constants';
 import { Overlay } from 'react-native-elements';
@@ -10,15 +10,26 @@ import StoryKey from "./data/StoryKey";
 import { scale, verticalScale } from 'react-native-size-matters';
 
 
-export default function Settings(){
+export default function Settings(props){
 
   let globalFontSize = useSelector(getFontSize);
   const dispatch = useDispatch();
 
   const [creditAlertVisible, setCreditAlertVisible] = useState(false)
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backButtonHandler);
 
+    return () => {
 
+      BackHandler.removeEventListener("hardwareBackPress", backButtonHandler);
+    };
+  }, [backButtonHandler]);
+
+  function backButtonHandler(){
+    props.navigation.goBack();
+    return true;
+  }
 
 
   return(

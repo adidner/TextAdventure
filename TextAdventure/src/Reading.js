@@ -30,12 +30,18 @@ export default function Reading(){
   }
 
   useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', () => {
-        goBack()
-        return true;
-     });
-  });
+    BackHandler.addEventListener("hardwareBackPress", backButtonHandler);
 
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", backButtonHandler);
+    };
+  }, [backButtonHandler]);
+
+
+  function backButtonHandler(){
+    goBack()
+    return true;
+  }
 
   function goBack(){
     dispatch(popBackstack());

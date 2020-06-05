@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TextAdventure",
-    "slug": "TextAdventure",
+    "name": "Infinite Paths: Imagination",
+    "slug": "infinite-paths-imagination",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -13,7 +13,7 @@
     "orientation": "portrait",
     "icon": "./assets/infinite-paths-v3-app-icon-512.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/black-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,12 +24,12 @@
       "**/*"
     ],
     "android": {
-      "package": "com.infinitepaths.necromancer",
+      "package": "com.infinitepaths.imagination",
       "versionCode": 1,
       "permissions" : [],
     },
     "ios": {
-      "bundleIdentifier": "com.infinitepaths.necromancer",
+      "bundleIdentifier": "com.infinitepaths.imagination",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     }
